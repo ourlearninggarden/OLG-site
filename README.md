@@ -13,6 +13,7 @@ Static HTML/CSS/JS — no build step, no dependencies, no framework.
 | `garden.css`      | Website styles + brand tokens                  |
 | `garden.js`       | Nav, scroll reveals, mobile menu               |
 | `image-slot.js`   | Drag-and-drop photo placeholders               |
+| `images/`         | Optimised photos of the centre                 |
 | `brand-guide.html`| Brand guidelines (logo, colour, type, etc.)    |
 | `brandguide.css`  | Brand guide styles                             |
 | `brandguide.js`   | Brand guide reveals + pattern                  |
@@ -51,20 +52,18 @@ existing project → GitHub* → pick the repo. `netlify.toml` already sets:
 - Build command: *(none)*
 - Publish directory: `.`
 
-## ⚠️ Before you go live — photos
+## Photos
 
-The photo spots (Our Center gallery, Meet the Team headshots, Instagram tiles in
-the brand guide) are **drag-and-drop placeholders**. A dropped image is saved only
-in **your own browser** — public visitors will see empty slots.
+The **Our Center** gallery now uses real optimised photos (in `images/`).
 
-For a live public site, replace each `<image-slot …></image-slot>` with a real
-image tag, e.g.:
+Still using drag-and-drop placeholders (saved only in the visitor's own browser,
+so they show empty to the public): the **Meet the Team** headshots and the
+Instagram / decor mock-ups inside `brand-guide.html`. When you send those photos,
+replace each `<image-slot …></image-slot>` with a real image, e.g.:
 
 ```html
-<img src="images/classroom.jpg" alt="Our sunny classroom" />
+<img src="images/teacher-priya.jpg" alt="Ms. Priya" />
 ```
-
-Send the photos over and we'll wire them in for you.
 
 ## Editing content
 

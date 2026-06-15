@@ -367,9 +367,11 @@ section { position: relative; }
 .cfeat b { display: block; color: var(--sage-900); font-size: 1.02rem; }
 .cfeat span { font-size: .9rem; color: var(--ink-60); }
 
-.gallery { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px; gap: 16px; }
-.gallery image-slot { width: 100%; height: 100%; box-shadow: var(--shadow-sm); }
-.gallery .tall { grid-row: span 2; height: 100%; }
+.gallery { display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 140px; gap: 14px; }
+.gallery figure { margin: 0; border-radius: 18px; overflow: hidden; box-shadow: var(--shadow-sm); position: relative; }
+.gallery img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gallery .g-tall { grid-row: span 2; }
+.gallery .g-wide { grid-column: span 2; }
 
 /* ============================================================
    MEET THE TEAM
@@ -504,6 +506,6 @@ section { position: relative; }
   .team-grid { grid-template-columns: 1fr; }
   .field.two { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
-  .gallery { grid-template-rows: 160px 160px; }
+  .gallery { grid-auto-rows: 130px; }
   .program { padding: 32px; min-height: auto; }
 }
