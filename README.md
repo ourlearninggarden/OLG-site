@@ -1,46 +1,34 @@
 # Our Learning Garden — Website
 
-A one-page marketing site for **Our Learning Garden**, a play-based preschool &
+The marketing website for **Our Learning Garden**, a play-based preschool &
 daycare (ages 18 months–5 years) in Saanich, Victoria BC.
 
-Static HTML/CSS/JS — no build step, no dependencies.
+Static HTML/CSS/JS — no build step, no dependencies, no framework.
 
 ## Files
 
-| File            | Purpose                                  |
-| --------------- | ---------------------------------------- |
-| `index.html`    | The site (entry point)                   |
-| `garden.css`    | All styles + brand tokens                |
-| `garden.js`     | Nav, waitlist form, scroll reveals       |
-| `image-slot.js` | Drag-and-drop photo placeholders         |
-| `netlify.toml`  | Netlify build/deploy config              |
+| File              | Purpose                                        |
+| ----------------- | ---------------------------------------------- |
+| `index.html`      | The website (entry point)                      |
+| `garden.css`      | Website styles + brand tokens                  |
+| `garden.js`       | Nav, scroll reveals, mobile menu               |
+| `image-slot.js`   | Drag-and-drop photo placeholders               |
+| `brand-guide.html`| Brand guidelines (logo, colour, type, etc.)    |
+| `brandguide.css`  | Brand guide styles                             |
+| `brandguide.js`   | Brand guide reveals + pattern                  |
+| `netlify.toml`    | Netlify deploy config                          |
+
+Open the site at `/` (index.html) and the brand guide at `/brand-guide.html`.
 
 ## Run locally
 
-It's a static site — just open `index.html` in a browser, or serve the folder:
+It's a static site — open `index.html` in a browser, or serve the folder:
 
 ```bash
-# Python
-python3 -m http.server 8000
-# then visit http://localhost:8000
-
-# or Node
+python3 -m http.server 8000      # then visit http://localhost:8000
+# or
 npx serve .
 ```
-
-## Deploy to Netlify
-
-**Option A — drag & drop (fastest)**
-1. Go to [app.netlify.com/drop](https://app.netlify.com/drop)
-2. Drag this whole folder onto the page. Done.
-
-**Option B — from GitHub (recommended for updates)**
-1. Push this folder to a GitHub repo (see below).
-2. In Netlify: **Add new site → Import an existing project → GitHub**.
-3. Pick the repo. Settings are already handled by `netlify.toml`:
-   - **Build command:** _(none)_
-   - **Publish directory:** `.`
-4. Click **Deploy**. Every `git push` redeploys automatically.
 
 ## Push to GitHub
 
@@ -53,9 +41,34 @@ git remote add origin https://github.com/<your-username>/our-learning-garden.git
 git push -u origin main
 ```
 
+## Deploy to Netlify
+
+**Drag & drop:** zip-free, go to [app.netlify.com/drop](https://app.netlify.com/drop)
+and drag this folder on.
+
+**From GitHub (auto-deploys on every push):** Netlify → *Add new site → Import an
+existing project → GitHub* → pick the repo. `netlify.toml` already sets:
+- Build command: *(none)*
+- Publish directory: `.`
+
+## ⚠️ Before you go live — photos
+
+The photo spots (Our Center gallery, Meet the Team headshots, Instagram tiles in
+the brand guide) are **drag-and-drop placeholders**. A dropped image is saved only
+in **your own browser** — public visitors will see empty slots.
+
+For a live public site, replace each `<image-slot …></image-slot>` with a real
+image tag, e.g.:
+
+```html
+<img src="images/classroom.jpg" alt="Our sunny classroom" />
+```
+
+Send the photos over and we'll wire them in for you.
+
 ## Editing content
 
-- Copy and contact details live in `index.html`.
-- Colors, fonts, and spacing are CSS variables at the top of `garden.css` (`:root`).
-- Photos: the "Our Center" gallery uses drag-and-drop slots. To ship fixed images
-  instead, replace each `<image-slot>` with a standard `<img src="...">`.
+- Copy, events, and contact details live in `index.html`.
+- Brand colours, fonts and spacing are CSS variables at the top of `garden.css` (`:root`).
+- The waitlist buttons all point to the Google Form:
+  `https://forms.gle/a2fBe1ZndDvMBNN49`
