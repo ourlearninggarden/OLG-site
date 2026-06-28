@@ -65,6 +65,48 @@
     revealEls.forEach(function (el) { el.style.opacity = "1"; el.style.transform = "none"; });
   }
 
+  /* ---- Center gallery slideshow ---- */
+  var gallery = document.querySelector("[data-gallery]");
+  if (gallery) {
+    var slides = Array.prototype.slice.call(gallery.querySelectorAll(".g-slide"));
+    var dotsWrap = gallery.querySelector(".g-dots");
+    var idx = 0, timer = null;
+    var DELAY = 5000;
+
+    var dots = slides.map(function (s, i) {
+      var d = document.createElement("button");
+      d.className = "g-dot" + (i === 0 ? " is-active" : "");
+      d.type = "button";
+      d.setAttribute("role", "tab");
+      d.setAttribute("aria-label", "Photo " + (i + 1));
+      d.addEventListener("click", function () { go(i); reset(); });
+      dotsWrap.appendChild(d);
+      return d;
+    });
+
+    function go(n) {
+      idx = (n + slides.length) % slides.length;
+      slides.forEach(function (s, i) { s.classList.toggle("is-active", i === idx); });
+      dots.forEach(function (d, i) { d.classList.toggle("is-active", i === idx); });
+    }
+    function next() { go(idx + 1); }
+    function prev() { go(idx - 1); }
+    function reset() {
+      if (timer) clearInterval(timer);
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        timer = setInterval(next, DELAY);
+      }
+    }
+
+    var nextBtn = gallery.querySelector(".g-next");
+    var prevBtn = gallery.querySelector(".g-prev");
+    if (nextBtn) nextBtn.addEventListener("click", function () { next(); reset(); });
+    if (prevBtn) prevBtn.addEventListener("click", function () { prev(); reset(); });
+    gallery.addEventListener("mouseenter", function () { if (timer) clearInterval(timer); });
+    gallery.addEventListener("mouseleave", reset);
+    reset();
+  }
+
   /* ---- Gentle parallax float on hero motifs ---- */
   var floats = document.querySelectorAll("#heroArt .float");
   if (floats.length && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
